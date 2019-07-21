@@ -11,10 +11,10 @@ class Thread1(threading.Thread):
     def run(self):
         link = requests.get('http://www.dictionary.com/wordoftheday')
         soup = BeautifulSoup(link.text, 'html.parser')
-        tag = soup.find('div', class_='definition-header')
+        tag = soup.find('div', class_='wotd-item__definition')
         word = ""
-        if tag.find('strong') is not None:
-            word = tag.find('strong').text.strip()
+        if tag.find('h1') is not None:
+            word = tag.find('h1').text.strip()
 
         file1 = open('Words.txt', 'r')
 
